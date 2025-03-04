@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="table-container">
+    <h2>Trang Quản Lý User</h2>
+
+    <!-- Hiển thị thông báo từ Flask -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Trạng thái</th>
+                <th>Vai trò</th> 
+                <th>Hành động</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    {% if user.is_blocked %}
+                        <span style="color: red;">Bị khóa</span>
+                    {% else %}
+                        <span style="color: green;">Hoạt động</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if user.is_admin %}
+                        <span style="color: blue;">Admin</span>
+                    {% else %}
+                        <span style="color: gray;">User</span>
+                    {% endif %}
+                    <td class="action-buttons">
+                        {% if user.is_blocked %}
+                            <a href="{{ url_for('unblock_user', user_id=user.id) }}" class="btn-unblock">Mở khóa</a>
+                        {% else %}
+                            {% if not user.is_admin %}
+                                <a href="{{ url_for('block_user', user_id=user.id) }}" class="btn-danger">Khóa</a>
+                            {% endif %}
+                        {% endif %}
+                        <span class="separator">|</span>
+                        <a href="{{ url_for('reset_password', user_id=user.id) }}" class="btn-warning">Reset mật khẩu</a>
+                    </td>
+                       
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
