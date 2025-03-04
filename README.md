@@ -21,3 +21,4 @@
 # B5: Tạo random Database
 ## Chạy file random_data.py để tạo nhiều dữ liệu để phân trang (thay đổi email để tạo dữ liệu cho user đó)
 # d. Link project đã triển khai của bạn:
+# http://127.0.0.1:5000
