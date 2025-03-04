@@ -1,6 +1,6 @@
 # a. Thông tin sinh viên:
 ## Họ và tên: Hồ Minh Luân
-## MSSV: 226447561
+## MSSV: 22644751
 # b. Mô tả project:
 ## Flask To-Do List
 ### Đây là một ứng dụng web quản lý danh sách công việc (To-Do List) đơn giản, được xây dựng bằng Flask. Ứng dụng cho phép người dùng tạo chỉnh sửa, xóa và đánh dấu các công việc đã hoàn thành. Hỗ trợ tính năng đăng nhập, đăng ký tài khoản và quản lý người dùng.
