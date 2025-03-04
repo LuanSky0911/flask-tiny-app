@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="login-container">
+    <div class="login-card">
+        <h2 class="login-title">Đăng Nhập</h2>
+        <!-- Thêm thông báo lỗi -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form method="POST" class="login-form">
+            {{ form.hidden_tag() }}
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                {{ form.email(class="form-control", placeholder="Nhập email") }}
+            </div>
+
+            <!-- Ô nhập mật khẩu + icon toggle -->
+            <div class="input-group password-group">
+                <label for="password">Mật khẩu</label>
+                <div class="password-wrapper">
+                    {{ form.password(class="form-control password-input", placeholder="Nhập mật khẩu") }}
+                    <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-login">Đăng nhập</button>
+        </form>
+
+        <p class="register-link">Chưa có tài khoản? <a href="{{ url_for('register') }}">Đăng ký ngay</a></p>
+    </div>
+</div>
+
+<!-- CSS Tùy chỉnh -->
+<style>
+    /* ===== Căn chỉnh tổng thể trang ===== */
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url("{{ url_for('static', filename='background.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 20px;
+    }
+
+    /* ===== Card đăng nhập với hiệu ứng đổ bóng ===== */
+    .login-card {
+        background: rgba(255, 255, 255, 0.95); /* Làm nền trắng mờ hơn */
+        padding: 35px;
+        border-radius: 16px; /* Bo góc mạnh hơn */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Đổ bóng mượt hơn */
+        width: 400px; /* Cân chỉnh kích thước */
+        text-align: center;
+        border: 1px solid rgba(0, 0, 0, 0.1); /* Viền nhẹ */
+    }
+
+    .login-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    /* ===== Ô nhập liệu với hiệu ứng tinh tế ===== */
+    .input-group {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
+    .input-group label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #555;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        background-color: rgba(255, 255, 255, 0.8); /* Làm nền input trong suốt nhẹ */
+        transition: all 0.3s ease-in-out;
+    }
+
+    .form-control:focus {
+        border: 1px solid #ff5733;
+        outline: none;
+        box-shadow: 0 0 8px rgba(255, 87, 51, 0.5);
+    }
+
+    /* ===== Nút đăng nhập ===== */
+    .btn-login {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        background-color: #ff5733;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn-login:hover {
+        background-color: #e04d29;
+        transform: scale(1.05); /* Hiệu ứng zoom nhẹ */
+    }
+
+    /* ===== Hiển thị mật khẩu với icon đẹp hơn ===== */
+    .password-group {
+        position: relative;
+    }
+
+    .password-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .password-input {
+        width: 100%;
+        padding-right: 40px; /* Chừa chỗ cho icon */
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 12px;
+        cursor: pointer;
+        font-size: 18px;
+        color: #777;
+        transition: color 0.3s ease;
+    }
+
+    .toggle-password:hover {
+        color: #ff5733;
+    }
+
+    /* ===== Đăng ký link ===== */
+    .register-link {
+        margin-top: 12px;
+        font-size: 14px;
+    }
+
+    .register-link a {
+        color: #ff5733;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .register-link a:hover {
+        text-decoration: underline;
+        color: #e04d29;
+    }
+</style>
+
+
+<!-- JavaScript để toggle mật khẩu -->
+<script>
+    function togglePassword(fieldId) {
+        let input = document.getElementById(fieldId);
+        if (input.type === "password") {
+            input.type = "text";
+        } else {
+            input.type = "password";
+        }
+    }
+</script>
+
+{% endblock %}
