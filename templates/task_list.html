@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg p-4 custom-todo-card">
+        <!-- Hiển thị thông báo -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} flash-message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form id="delete-multiple-form" method="POST" action="{{ url_for('delete_multiple_tasks') }}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hạn cuối</th>
+                        <th>Độ ưu tiên</th>
+                        <th>Công việc</th>
+                        <th>Đang tiến hành</th>
+                        <th>Đã làm</th>
+                        <th>Xóa</th>
+                        <th>Chỉnh Sửa</th>  <!-- Thêm cột chỉnh sửa -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.due_date.strftime('%d/%m/%Y') if task.due_date else 'Chưa đặt' }}</td>
+                        <td class="{{ 'priority-high' if task.priority == 'HIGH' else 'priority-medium' if task.priority == 'MEDIUM' else 'priority-low' }}">
+                            {{ task.priority if task.priority else 'N/A' }}
+                        </td>
+                        <td>{{ task.content }}</td>
+                        <td class="text-center"><input type="checkbox"></td>
+                        <td class="text-center"><input type="checkbox"></td>
+                        <td class="text-center"><input type="checkbox" name="selected_tasks" value="{{ task.id }}" class="task-checkbox"></td>
+                        <td class="text-center">
+                            <a href="{{ url_for('edit_task', task_id=task.id) }}" class="btn btn-info">Chỉnh Sửa</a>
+                    </tr>
+                    {% endfor %}
+                </tbody>                
+            </table>
+            <button class="delete-button">Xóa các công việc đã chọn</button>
+        </form>
+        <!-- Phân trang -->
+        <div class="pagination">
+            {% if pagination.has_prev %}
+                <a href="{{ url_for('task_list', page=pagination.prev_num) }}" class="btn btn-primary">← Trang trước</a>
+            {% endif %}
+            <span class="current-page">Trang {{ pagination.page }} / {{ pagination.pages }}</span>
+            {% if pagination.has_next %}
+                <a href="{{ url_for('task_list', page=pagination.next_num) }}" class="btn btn-primary">Trang sau →</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
