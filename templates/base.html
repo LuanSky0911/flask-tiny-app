@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>To-Do List</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Thư viện Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+</head>
+<body>
+<!-- Thanh điều hướng -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <!-- Logo và tên ứng dụng -->
+        <div class="navbar-logo">
+            <img src="{{ url_for('static', filename='todolist.webp') }}" alt="Logo">
+        </div>
+        <!-- Menu điều hướng -->
+        <ul class="navbar-menu">
+            <li><a href="{{ url_for('home') }}">Trang Chủ</a></li>
+            {% if current_user.is_authenticated %}
+                {% if current_user.is_admin %}
+                    <li><a href="{{ url_for('admin') }}">Quản Lý</a></li>
+                {% endif %}
+                <li><a href="{{ url_for('change_password') }}">Đổi Mật Khẩu</a></li>
+                <li><a href="{{ url_for('logout') }}">Đăng Xuất</a></li>
+                <!-- Hiển thị tên tài khoản -->
+                <li class="user-profile">
+                    <div class="user-avatar">
+                        <span class="avatar-letter">{{ current_user.username[0]|upper }}</span>
+                    </div>
+                    <span class="username">{{ current_user.username }}</span>
+                </li>
+            {% else %}
+                <li><a href="{{ url_for('register') }}">Đăng Ký</a></li>
+                <li><a href="{{ url_for('login') }}" class="active">Đăng Nhập</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+{% block content %}{% endblock %} 
+{% if request.endpoint == 'login' %}
+<!-- Phần quảng cáo (Hero Section) -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="animated-text">Organize your work and life, finally.</h1>
+        <p>Simplify life for both you and your team with the world's #1 task manager and to-do list app.</p>
+        <p>⭐ 374K+ 5-star reviews from Apple & Android users.</p>
+        <a href="#" class="btn-start">Start for free</a>
+    </div>
+</section>
+
+<!-- Phần đánh giá từ các trang web nổi tiếng -->
+<section class="reviews">
+    <div class="review-item">
+        <p class="review-text">“Simple, straightforward, and super powerful”</p>
+        <span class="review-source">— The Verge</span>
+    </div>
+    <div class="review-item">
+        <p class="review-text">“The best to-do list app on the market”</p>
+        <span class="review-source">— PC Mag</span>
+    </div>
+    <div class="review-item">
+        <p class="review-text">“Nothing short of stellar”</p>
+        <span class="review-source">— TechRadar</span>
+    </div>
+</section>
+{% endif %}
+{% if request.endpoint == 'login' %}
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        function revealOnScroll() {
+            let elements = document.querySelectorAll('.reviews, .footer');
+            elements.forEach(function(element) {
+                let position = element.getBoundingClientRect().top;
+                let windowHeight = window.innerHeight;
+                if (position < windowHeight - 50) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+    
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+    });
+    </script>    
+<!-- Phần đánh giá -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-section">
+            <h3>Giới thiệu</h3>
+            <p>To-Do List giúp bạn quản lý công việc một cách dễ dàng, nâng cao hiệu suất làm việc.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Hỗ trợ</h3>
+            <ul>
+                <li><a href="#">Đăng ký tài khoản</a></li>
+                <li><a href="#">Đăng nhập tài khoản</a></li>
+                <li><a href="#">Liên hệ hỗ trợ</a></li>
+                <li><a href="#">Zalo: 0795906201</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Danh mục</h3>
+            <ul>
+                <li><a href="#">Thêm công việc</a></li> 
+                <li><a href="#">Chỉnh sửa công việc</a></li>
+                <li><a href="#">Xóa công việc</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Kết nối với chúng tôi</h3>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+</footer>
+{% endif %}
+</html>
