@@ -1,0 +1,922 @@
+/* 1. Cấu trúc tổng quan của trang web */
+/* Thiết lập font chữ và màu nền chung */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Khung chứa nội dung */
+.container {
+    width: 50%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    border-radius: 8px;
+}
+
+/* Thiết lập cho thanh điều hướng */
+nav {
+    background-color: black ! important ;
+    padding: 10px 40px;
+    height: 60px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+nav a:hover {
+    background-color: black;
+    transform: scale(1.05);
+}
+
+/* Đảm bảo logo bên trái, menu bên phải */
+.navbar-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+/* Logo bên trái */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 10px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+.brand-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Menu bên phải */
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    margin-left: auto; 
+    gap: 20px; 
+}
+
+.navbar-menu li {
+    margin: 0;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+}
+
+.navbar-menu a.active {
+    font-weight: bold;
+    color: white;
+}
+
+/* Container chính */
+.container {
+    width: 50%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    border-radius: 8px;
+}
+
+/* Footer */
+.footer {
+    background: #f8f8f8;
+    padding: 40px 0;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Khi phần footer vào tầm nhìn, nó sẽ hiện ra */
+.footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* Hiệu ứng hover cho từng phần */
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hiệu ứng khi hover vào từng phần */
+.footer-section:hover {
+    transform: translateY(-5px);
+}
+
+/* Hiệu ứng hover cho tiêu đề */
+.footer-section h3 {
+    color: #ff6600;
+    font-size: 18px;
+    margin-bottom: 15px;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.footer-section h3:hover {
+    color: #ff4500;
+    transform: scale(1.1);
+}
+
+/* Danh sách không có gạch đầu dòng */
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Hiệu ứng hover cho liên kết */
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-section ul li a:hover {
+    color: #ff6600;
+    font-weight: bold;
+}
+
+/* Hiệu ứng cho hình ảnh logo */
+.footer-section img {
+    width: 150px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.footer-section img:hover {
+    transform: scale(1.1);
+}
+
+/* Hiệu ứng hover cho icon mạng xã hội */
+.social-icons a {
+    margin: 0 10px;
+    font-size: 20px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+    color: #ff6600;
+    transform: scale(1.2);
+}
+
+/* Quảng cáo */
+.hero {
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 60px 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.animated-text {
+    font-size: 36px;
+    font-weight: bold;
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+    animation: slideUp 1.5s ease-in-out;
+}
+
+.btn-start {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #ff5722;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-start:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+}
+
+/* Phần Đánh Giá */
+.reviews {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 40px 20px;
+    background: linear-gradient(to right, #eef2f3, #d8e3e7);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Khi phần này vào tầm nhìn, áp dụng hiệu ứng */
+.reviews.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.review-item {
+    text-align: center;
+    max-width: 300px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 2s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hiệu ứng hover khi di chuột vào */
+.review-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.review-text {
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.review-source {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+/* Hiệu ứng fade-in khi cuộn */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+ /* 2. Giao diện chính của từng trang */
+/* Thiết lập form đăng nhập và đăng ký */
+form {
+    text-align: left;
+    margin: auto;
+    width: 80%;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+/* Giao diện Form Đăng Nhập & Đổi Mật Khẩu */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('/static/background.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.login-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+}
+
+.login-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.login-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.login-form .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff5733;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.login-btn:hover {
+    background-color: #e04d2b;
+}
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input {
+    width: 100%;
+    padding-right: 40px; 
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Trang home */
+.custom-home-card {
+    background-color: #f7f1e3;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.home-header {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.home-links a {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.home-links a:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    margin-right: 10px;  
+}
+
+.btn:hover {
+    box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transform: translateY(1px);
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #28a745 ;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9 !important;
+}
+
+/* Hồ sơ người dùng */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #444;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    background-color: #ff5733;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.username {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+/* 3.  Trang Quản Lý User (Admin) */
+/* Thông báo trang Admin */
+.flash-message {
+    text-align: center; 
+    margin: 10px auto; 
+    width: 50%; 
+    display: block;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Màu sắc tùy vào loại thông báo */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+/* Bố cục bảng quản lý user */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Định dạng hàng tiêu đề */
+th {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 2px solid #0056b3;
+}
+
+/* Định dạng hàng dữ liệu */
+td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Định dạng hàng xen kẽ màu */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Căn giữa cột trạng thái và vai trò */
+td:nth-child(4), td:nth-child(5) {
+    font-weight: bold;
+}
+
+/* Định dạng vai trò Admin và User */
+td:nth-child(5) {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+td:nth-child(5):contains("Admin") {
+    color: blue;
+}
+
+td:nth-child(5):contains("User") {
+    color: gray;
+}
+
+/* Nút khóa */
+.btn-danger {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+/* Nút Mở khóa */
+.btn-unblock {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #28a745; 
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-unblock:hover {
+    background-color: #218838; 
+    transform: scale(1.05); 
+}
+
+.btn-unblock:active {
+    transform: scale(0.95); 
+}
+
+/* Nút Reset mật khẩu */
+.btn-warning {
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+.btn-warning:hover {
+    background-color: darkorange; 
+    transform: scale(1.05); 
+    text-decoration: none; 
+}
+
+/* Hành động hiển thị ngang dấu | */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; 
+    white-space: nowrap;
+}
+
+/* Định dạng dấu | */
+.separator {
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+/* 4. Trang Danh Sách Công Việc */
+/* Danh sách Task */
+.task-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task-list li {
+    background: #fff;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Bảng danh sách công việc */
+.custom-todo-card {
+    background-color: #f7f1e3;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.todo-header {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.todo-table {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.priority-high { color: red; font-weight: bold; }
+.priority-medium { color: orange; font-weight: bold; }
+.priority-low { color: green; font-weight: bold; }
+
+.notes-section {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+/* Nút chỉnh sửa */
+.btn-info {
+    padding: 8px 12px;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;  
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    color: white;
+}
+
+/* Nút xóa task */
+.delete-button {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px; 
+    width: fit-content; 
+    display: block;
+    margin: 10px auto; 
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.delete-button:hover {
+    background-color: darkred;
+}
+.notes-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.notes-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.notes-textarea {
+    width: 90%;
+    max-width: 500px;
+    height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    resize: vertical;
+    background: #f9f9f9;
+    transition: all 0.3s ease-in-out;
+}
+
+.notes-textarea:focus {
+    border-color: #4CAF50;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(76, 175, 80, 0.5);
+}
+.task-checkbox {
+    transform: scale(1.2);
+    margin: 5px;
+}
+
+.btn-danger {
+    background-color: red;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.btn-danger:hover {
+    background-color: darkred;
+}
+
+/* Thanh phân trang đẹp hơn */
+.pagination {
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px;
+    background: #f8f9fa; 
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: fit-content;
+    padding: 12px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Nút "Trang trước" và "Trang sau" */
+.pagination a {
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: white;
+    background: #007bff;
+    transition: all 0.3s ease-in-out;
+}
+
+.pagination a:hover {
+    background: #0056b3;
+}
+
+/* Số trang hiện tại */
+.current-page {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 5. Trang Thêm Công Việc */
+/* Châm ngôn trang thêm task */
+.fancy-quote {
+    font-family: "Georgia", serif; 
+    font-size: 24px; 
+    font-style: italic; 
+    text-align: center; 
+    color:black !important; 
+    font-weight: bold; 
+    background: transparent !important; 
+    padding: 10px; 
+    box-shadow: none !important; 
+    text-transform: none; 
+    letter-spacing: normal; 
+    border: none !important; 
+}
+/* Ô nhập task */
+input[type="text"], input[type="date"], select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="text"]:focus, input[type="date"]:focus, select:focus {
+    border-color: #4CAF50;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(76, 175, 80, 0.5);
+}
+
+/* Cải thiện dropdown độ ưu tiên */
+select {
+    appearance: none;
+    background: #fff;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+}
+
+select option {
+    padding: 10px;
+}
+
+/* Phân biệt mức độ ưu tiên */
+select option[value="High"] {
+    color: red;
+    font-weight: bold;
+}
+
+select option[value="Medium"] {
+    color: orange;
+    font-weight: bold;
+}
+
+select option[value="Low"] {
+    color: green;
+    font-weight: bold;
+}
+
+/* Cải thiện nút Thêm */
+button {
+    background: linear-gradient(45deg, #28a745, #218838);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: block;
+    width: 100%;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #218838, #1e7e34);
+    transform: scale(1.05); 
+    text-decoration: none; 
+}
+
