@@ -47,3 +47,6 @@ Chạy file `random_data.py` để sinh dữ liệu ngẫu nhiên.
 ## 5. Triển khai ứng dụng
 Ứng dụng được triển khai tại địa chỉ:  
 [http://127.0.0.1:5000](http://127.0.0.1:5000)
+## 6. Video cài đặt
+Video xem tại google drive:
+[https://drive.google.com/drive/folders/14n-RdeIF52o5qw1yiYz3wNAX1IS9r0rt?usp=drive_link](https://drive.google.com/drive/folders/14n-RdeIF52o5qw1yiYz3wNAX1IS9r0rt?usp=drive_link)
